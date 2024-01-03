@@ -12,6 +12,7 @@ const countdownResetButton = document.getElementById('countdown-button');
 
 //complete container
 const completeContainer = document.getElementById('complete');
+const completeInfo = document.getElementById('complete-info');
 const completeButton = document.getElementById('complete-button');
 
 let eventName = '';
@@ -50,20 +51,22 @@ function updateCountdown(e) {
 
 function updateDOM() {
   activeCountdown = setInterval(() => {
-    let todaysValue = new Date().getTime();
+    const todaysValue = new Date().getTime();
     countdownValue = new Date(eventDate).getTime();
     const remainingTime = countdownValue - todaysValue;
+    const remainingDays = Math.floor(remainingTime / day);
+    const remainingHours = Math.floor((remainingTime % day) / hour);
+    const remainingMinutes = Math.floor((remainingTime % hour) / minute);
+    const remainingSeconds = Math.floor((remainingTime % minute) / second);
+
+    inputContainer.hidden = true;
 
     if (remainingTime < 0) {
       completeContainer.hidden = false;
       countdownContainer.hidden = true;
-      inputContainer.hidden = true;
+      clearInterval(activeCountdown);
+      completeInfo.textContent = `${eventName} finished on ${eventDate}`;
     } else {
-      const remainingDays = Math.floor(remainingTime / day);
-      const remainingHours = Math.floor((remainingTime % day) / hour);
-      const remainingMinutes = Math.floor((remainingTime % hour) / minute);
-      const remainingSeconds = Math.floor((remainingTime % minute) / second);
-
       inputContainer.hidden = true;
       completeContainer.hidden = true;
       eventInput.hidden = true;
