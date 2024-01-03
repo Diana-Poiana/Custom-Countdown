@@ -82,6 +82,8 @@ function updateDOM() {
 function reset() {
   inputContainer.hidden = false;
   eventInput.hidden = false;
+  eventInput = '';
+  dateInput = '';
   countdownContainer.hidden = true;
   completeContainer.hidden = true;
 
