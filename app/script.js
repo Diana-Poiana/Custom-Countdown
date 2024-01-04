@@ -86,7 +86,7 @@ function reset() {
   inputContainer.hidden = false;
   eventInput.hidden = false;
   eventName = '';
-  dateName = '';
+  eventDate = '';
   countdownContainer.hidden = true;
   completeContainer.hidden = true;
 
